@@ -51,6 +51,12 @@ public class NetworkRoot extends NetworkNode {
     private final Set<Location> powerDisplays = ConcurrentHashMap.newKeySet();
     private final Set<Location> encoders = ConcurrentHashMap.newKeySet();
     private final Set<Location> greedyBlocks = ConcurrentHashMap.newKeySet();
+    private final Set<Location> cutters = ConcurrentHashMap.newKeySet();
+    private final Set<Location> pasters = ConcurrentHashMap.newKeySet();
+    private final Set<Location> vacuums = ConcurrentHashMap.newKeySet();
+    private final Set<Location> wirelessTransmitters = ConcurrentHashMap.newKeySet();
+    private final Set<Location> wirelessReceivers = ConcurrentHashMap.newKeySet();
+    private final Set<Location> powerOutlets = ConcurrentHashMap.newKeySet();
 
     private Set<BarrelIdentity> barrels = null;
 
@@ -62,6 +68,8 @@ public class NetworkRoot extends NetworkNode {
         super(location, type);
         this.maxNodes = maxNodes;
         this.root = this;
+        NetworkNode node = new NetworkNode(location, NodeType.CONTROLLER);
+        io.github.sefiraat.networks.NetworkStorage.getAllNetworkObjects().get(location).setNode(node);
     }
 
     public void registerNode(@Nonnull Location location, @Nonnull NodeType type) {
@@ -85,6 +93,12 @@ public class NetworkRoot extends NetworkNode {
             case POWER_DISPLAY -> powerDisplays.add(location);
             case ENCODER -> encoders.add(location);
             case GREEDY_BLOCK -> greedyBlocks.add(location);
+            case CUTTER -> cutters.add(location);
+            case PASTER -> pasters.add(location);
+            case VACUUM -> vacuums.add(location);
+            case WIRELESS_TRANSMITTER -> wirelessTransmitters.add(location);
+            case WIRELESS_RECEIVER -> wirelessReceivers.add(location);
+            case POWER_OUTLET -> powerOutlets.add(location);
         }
     }
 
@@ -172,6 +186,30 @@ public class NetworkRoot extends NetworkNode {
 
     public Set<Location> getEncoders() {
         return this.encoders;
+    }
+
+    public Set<Location> getCutters() {
+        return this.cutters;
+    }
+
+    public Set<Location> getPasters() {
+        return this.pasters;
+    }
+
+    public Set<Location> getVacuums() {
+        return this.vacuums;
+    }
+
+    public Set<Location> getWirelessTransmitters() {
+        return this.wirelessTransmitters;
+    }
+
+    public Set<Location> getWirelessReceivers() {
+        return this.wirelessReceivers;
+    }
+
+    public Set<Location> getPowerOutlets() {
+        return this.powerOutlets;
     }
 
     @Nonnull

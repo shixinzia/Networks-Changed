@@ -183,6 +183,13 @@
 
         <!-- Supported Plugins -->
         <dependency>
+            <groupId>com.github.SlimefunGuguProject</groupId>
+            <artifactId>InfinityExpansion</artifactId>
+            <version>3c5db3650a</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+
             <groupId>com.github.Sefiraat</groupId>
             <artifactId>Netheopoiesis</artifactId>
             <version>8d1af6c570</version>
@@ -201,18 +208,11 @@
             <scope>provided</scope>
         </dependency>
 
-        <dependency>
-            <groupId>io.github.mooy1</groupId>
-            <artifactId>InfinityExpansion</artifactId>
-            <version>90e11bc</version>
-            <scope>provided</scope>
-        </dependency>
-
         <!-- 汉化库 -->
         <dependency>
             <groupId>net.guizhanss</groupId>
             <artifactId>GuizhanLibPlugin</artifactId>
-            <version>1.5.0</version>
+            <version>1.7.6</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
