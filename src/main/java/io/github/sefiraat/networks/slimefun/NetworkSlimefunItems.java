@@ -17,8 +17,6 @@ import io.github.sefiraat.networks.slimefun.network.NetworkPowerDisplay;
 import io.github.sefiraat.networks.slimefun.network.NetworkPowerNode;
 import io.github.sefiraat.networks.slimefun.network.NetworkPowerOutlet;
 import io.github.sefiraat.networks.slimefun.network.NetworkPurger;
-import io.github.sefiraat.networks.slimefun.network.NetworkMorePusher;
-import io.github.sefiraat.networks.slimefun.network.NetworkBestPusher;
 import io.github.sefiraat.networks.slimefun.network.NetworkPusher;
 import io.github.sefiraat.networks.slimefun.network.NetworkQuantumStorage;
 import io.github.sefiraat.networks.slimefun.network.NetworkQuantumWorkbench;
@@ -37,6 +35,8 @@ import io.github.sefiraat.networks.slimefun.tools.NetworkProbe;
 import io.github.sefiraat.networks.slimefun.tools.NetworkRake;
 import io.github.sefiraat.networks.slimefun.tools.NetworkRemote;
 import io.github.sefiraat.networks.slimefun.tools.NetworkWirelessConfigurator;
+import io.github.sefiraat.networks.slimefun.yitoudaidai.expansion.machine.transportation.NetworkBestPusher;
+import io.github.sefiraat.networks.slimefun.yitoudaidai.expansion.machine.transportation.NetworkMorePusher;
 import io.github.sefiraat.networks.utils.StackUtils;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
@@ -83,6 +83,7 @@ public class NetworkSlimefunItems {
     public static final NetworkCell NETWORK_CELL;
     public static final NetworkGreedyBlock NETWORK_GREEDY_BLOCK;
     public static final NetworkQuantumWorkbench NETWORK_QUANTUM_WORKBENCH;
+
     public static final NetworkQuantumStorage NETWORK_QUANTUM_STORAGE_0;
     public static final NetworkQuantumStorage NETWORK_QUANTUM_STORAGE_1;
     public static final NetworkQuantumStorage NETWORK_QUANTUM_STORAGE_2;
@@ -94,6 +95,7 @@ public class NetworkSlimefunItems {
     public static final NetworkQuantumStorage NETWORK_QUANTUM_STORAGE_8;
     public static final NetworkQuantumStorage NETWORK_QUANTUM_STORAGE_9;
     public static final NetworkQuantumStorage NETWORK_QUANTUM_STORAGE_10;
+
     public static final NetworkPowerNode NETWORK_CAPACITOR_1;
     public static final NetworkPowerNode NETWORK_CAPACITOR_2;
     public static final NetworkPowerNode NETWORK_CAPACITOR_3;
@@ -120,7 +122,6 @@ public class NetworkSlimefunItems {
     public static final NetworkAdminDebugger NETWORK_ADMIN_DEBUGGER;
 
     static {
-
         final ItemStack glass = new ItemStack(Material.GLASS);
         final ItemStack oak_planks = new ItemStack(Material.OAK_PLANKS);
         final ItemStack chest = new ItemStack(Material.CHEST);
@@ -336,28 +337,6 @@ public class NetworkSlimefunItems {
             }
         );
 
-        NETWORK_MORE_PUSHER = new NetworkMorePusher(
-                NetworksItemGroups.NETWORK_ITEMS,
-                NetworksSlimefunItemStacks.NETWORK_MORE_PUSHER,
-                RecipeType.ENHANCED_CRAFTING_TABLE,
-                new ItemStack[]{
-                        NETWORK_PUSHER.getItem(), OPTIC_CABLE.getItem(), NETWORK_PUSHER.getItem(),
-                        OPTIC_CABLE.getItem(), NETWORK_PUSHER.getItem(), OPTIC_CABLE.getItem(),
-                        OPTIC_GLASS.getItem(), OPTIC_CABLE.getItem(), OPTIC_GLASS.getItem(),
-                }
-        );
-
-        NETWORK_BEST_PUSHER = new NetworkBestPusher(
-                NetworksItemGroups.NETWORK_ITEMS,
-                NetworksSlimefunItemStacks.NETWORK_BEST_PUSHER,
-                RecipeType.ENHANCED_CRAFTING_TABLE,
-                new ItemStack[]{
-                        NETWORK_MORE_PUSHER.getItem(), OPTIC_CABLE.getItem(), NETWORK_MORE_PUSHER.getItem(),
-                        OPTIC_CABLE.getItem(), NETWORK_MORE_PUSHER.getItem(), OPTIC_CABLE.getItem(),
-                        OPTIC_GLASS.getItem(), OPTIC_CABLE.getItem(), OPTIC_GLASS.getItem(),
-                }
-        );
-
         NETWORK_CONTROL_X = new NetworkControlX(
             NetworksItemGroups.NETWORK_ITEMS,
             NetworksSlimefunItemStacks.NETWORK_CONTROL_X,
@@ -412,7 +391,27 @@ public class NetworkSlimefunItems {
                 OPTIC_GLASS.getItem(), new ItemStack(Material.HOPPER), OPTIC_GLASS.getItem(),
             }
         );
+        NETWORK_MORE_PUSHER = new NetworkMorePusher(
+                NetworksItemGroups.NETWORK_ITEMS,
+                NetworksSlimefunItemStacks.NETWORK_MORE_PUSHER,
+                RecipeType.ENHANCED_CRAFTING_TABLE,
+                new ItemStack[]{
+                        NETWORK_PUSHER.getItem(), OPTIC_CABLE.getItem(), NETWORK_PUSHER.getItem(),
+                        OPTIC_CABLE.getItem(), NETWORK_PUSHER.getItem(), OPTIC_CABLE.getItem(),
+                        OPTIC_GLASS.getItem(), OPTIC_CABLE.getItem(), OPTIC_GLASS.getItem(),
+                }
+        );
 
+        NETWORK_BEST_PUSHER = new NetworkBestPusher(
+                NetworksItemGroups.NETWORK_ITEMS,
+                NetworksSlimefunItemStacks.NETWORK_BEST_PUSHER,
+                RecipeType.ENHANCED_CRAFTING_TABLE,
+                new ItemStack[]{
+                        NETWORK_MORE_PUSHER.getItem(), OPTIC_CABLE.getItem(), NETWORK_MORE_PUSHER.getItem(),
+                        OPTIC_CABLE.getItem(), NETWORK_MORE_PUSHER.getItem(), OPTIC_CABLE.getItem(),
+                        OPTIC_GLASS.getItem(), OPTIC_CABLE.getItem(), OPTIC_GLASS.getItem(),
+                }
+        );
         NETWORK_WIRELESS_TRANSMITTER = new NetworkWirelessTransmitter(
             NetworksItemGroups.NETWORK_ITEMS,
             NetworksSlimefunItemStacks.NETWORK_WIRELESS_TRANSMITTER,
@@ -538,99 +537,99 @@ public class NetworkSlimefunItems {
         );
 
         NETWORK_QUANTUM_STORAGE_1 = new NetworkQuantumStorage(
-            NetworksItemGroups.NETWORK_QUANTUMS,
-            NetworksSlimefunItemStacks.NETWORK_QUANTUM_STORAGE_1,
-            NetworkQuantumWorkbench.TYPE,
-            new ItemStack[]{
-                OPTIC_GLASS.getItem(), OPTIC_GLASS.getItem(), OPTIC_GLASS.getItem(),
-                OPTIC_CABLE.getItem(), NETWORK_QUANTUM_STORAGE_10.getItem(), OPTIC_CABLE.getItem(),
-                OPTIC_GLASS.getItem(), OPTIC_GLASS.getItem(), OPTIC_GLASS.getItem()
-            },
-            NetworkQuantumStorage.getSizes()[3]
+                NetworksItemGroups.NETWORK_QUANTUMS,
+                NetworksSlimefunItemStacks.NETWORK_QUANTUM_STORAGE_1,
+                NetworkQuantumWorkbench.TYPE,
+                new ItemStack[]{
+                        OPTIC_GLASS.getItem(), OPTIC_GLASS.getItem(), OPTIC_GLASS.getItem(),
+                        OPTIC_CABLE.getItem(), NETWORK_QUANTUM_STORAGE_10.getItem(), OPTIC_CABLE.getItem(),
+                        OPTIC_GLASS.getItem(), OPTIC_GLASS.getItem(), OPTIC_GLASS.getItem()
+                },
+                NetworkQuantumStorage.getSizes()[3]
         );
 
         NETWORK_QUANTUM_STORAGE_2 = new NetworkQuantumStorage(
-            NetworksItemGroups.NETWORK_QUANTUMS,
-            NetworksSlimefunItemStacks.NETWORK_QUANTUM_STORAGE_2,
-            NetworkQuantumWorkbench.TYPE,
-            new ItemStack[]{
-                OPTIC_GLASS.getItem(), SlimefunItems.ALUMINUM_BRASS_INGOT, OPTIC_GLASS.getItem(),
-                SlimefunItems.SYNTHETIC_SAPPHIRE, NETWORK_QUANTUM_STORAGE_1.getItem(), SlimefunItems.SYNTHETIC_SAPPHIRE,
-                OPTIC_GLASS.getItem(), SlimefunItems.ALUMINUM_BRASS_INGOT, OPTIC_GLASS.getItem()
-            },
-            NetworkQuantumStorage.getSizes()[4]
+                NetworksItemGroups.NETWORK_QUANTUMS,
+                NetworksSlimefunItemStacks.NETWORK_QUANTUM_STORAGE_2,
+                NetworkQuantumWorkbench.TYPE,
+                new ItemStack[]{
+                        OPTIC_GLASS.getItem(), SlimefunItems.ALUMINUM_BRASS_INGOT, OPTIC_GLASS.getItem(),
+                        SlimefunItems.SYNTHETIC_SAPPHIRE, NETWORK_QUANTUM_STORAGE_1.getItem(), SlimefunItems.SYNTHETIC_SAPPHIRE,
+                        OPTIC_GLASS.getItem(), SlimefunItems.ALUMINUM_BRASS_INGOT, OPTIC_GLASS.getItem()
+                },
+                NetworkQuantumStorage.getSizes()[4]
         );
 
         NETWORK_QUANTUM_STORAGE_3 = new NetworkQuantumStorage(
-            NetworksItemGroups.NETWORK_QUANTUMS,
-            NetworksSlimefunItemStacks.NETWORK_QUANTUM_STORAGE_3,
-            NetworkQuantumWorkbench.TYPE,
-            new ItemStack[]{
-                OPTIC_GLASS.getItem(), SlimefunItems.CORINTHIAN_BRONZE_INGOT, OPTIC_GLASS.getItem(),
-                SlimefunItems.SYNTHETIC_DIAMOND, NETWORK_QUANTUM_STORAGE_2.getItem(), SlimefunItems.SYNTHETIC_DIAMOND,
-                OPTIC_GLASS.getItem(), SlimefunItems.CORINTHIAN_BRONZE_INGOT, OPTIC_GLASS.getItem()
-            },
-            NetworkQuantumStorage.getSizes()[5]
+                NetworksItemGroups.NETWORK_QUANTUMS,
+                NetworksSlimefunItemStacks.NETWORK_QUANTUM_STORAGE_3,
+                NetworkQuantumWorkbench.TYPE,
+                new ItemStack[]{
+                        OPTIC_GLASS.getItem(), SlimefunItems.CORINTHIAN_BRONZE_INGOT, OPTIC_GLASS.getItem(),
+                        SlimefunItems.SYNTHETIC_DIAMOND, NETWORK_QUANTUM_STORAGE_2.getItem(), SlimefunItems.SYNTHETIC_DIAMOND,
+                        OPTIC_GLASS.getItem(), SlimefunItems.CORINTHIAN_BRONZE_INGOT, OPTIC_GLASS.getItem()
+                },
+                NetworkQuantumStorage.getSizes()[5]
         );
 
         NETWORK_QUANTUM_STORAGE_4 = new NetworkQuantumStorage(
-            NetworksItemGroups.NETWORK_QUANTUMS,
-            NetworksSlimefunItemStacks.NETWORK_QUANTUM_STORAGE_4,
-            NetworkQuantumWorkbench.TYPE,
-            new ItemStack[]{
-                OPTIC_GLASS.getItem(), SlimefunItems.HARDENED_METAL_INGOT, OPTIC_GLASS.getItem(),
-                SlimefunItems.SYNTHETIC_EMERALD, NETWORK_QUANTUM_STORAGE_3.getItem(), SlimefunItems.SYNTHETIC_EMERALD,
-                OPTIC_GLASS.getItem(), SlimefunItems.HARDENED_METAL_INGOT, OPTIC_GLASS.getItem()
-            },
-            NetworkQuantumStorage.getSizes()[6]
+                NetworksItemGroups.NETWORK_QUANTUMS,
+                NetworksSlimefunItemStacks.NETWORK_QUANTUM_STORAGE_4,
+                NetworkQuantumWorkbench.TYPE,
+                new ItemStack[]{
+                        OPTIC_GLASS.getItem(), SlimefunItems.HARDENED_METAL_INGOT, OPTIC_GLASS.getItem(),
+                        SlimefunItems.SYNTHETIC_EMERALD, NETWORK_QUANTUM_STORAGE_3.getItem(), SlimefunItems.SYNTHETIC_EMERALD,
+                        OPTIC_GLASS.getItem(), SlimefunItems.HARDENED_METAL_INGOT, OPTIC_GLASS.getItem()
+                },
+                NetworkQuantumStorage.getSizes()[6]
         );
 
         NETWORK_QUANTUM_STORAGE_5 = new NetworkQuantumStorage(
-            NetworksItemGroups.NETWORK_QUANTUMS,
-            NetworksSlimefunItemStacks.NETWORK_QUANTUM_STORAGE_5,
-            NetworkQuantumWorkbench.TYPE,
-            new ItemStack[]{
-                OPTIC_GLASS.getItem(), SlimefunItems.REINFORCED_ALLOY_INGOT, OPTIC_GLASS.getItem(),
-                SlimefunItems.POWER_CRYSTAL, NETWORK_QUANTUM_STORAGE_4.getItem(), SlimefunItems.POWER_CRYSTAL,
-                OPTIC_GLASS.getItem(), SlimefunItems.REINFORCED_ALLOY_INGOT, OPTIC_GLASS.getItem()
-            },
-            NetworkQuantumStorage.getSizes()[7]
+                NetworksItemGroups.NETWORK_QUANTUMS,
+                NetworksSlimefunItemStacks.NETWORK_QUANTUM_STORAGE_5,
+                NetworkQuantumWorkbench.TYPE,
+                new ItemStack[]{
+                        OPTIC_GLASS.getItem(), SlimefunItems.REINFORCED_ALLOY_INGOT, OPTIC_GLASS.getItem(),
+                        SlimefunItems.POWER_CRYSTAL, NETWORK_QUANTUM_STORAGE_4.getItem(), SlimefunItems.POWER_CRYSTAL,
+                        OPTIC_GLASS.getItem(), SlimefunItems.REINFORCED_ALLOY_INGOT, OPTIC_GLASS.getItem()
+                },
+                NetworkQuantumStorage.getSizes()[7]
         );
 
         NETWORK_QUANTUM_STORAGE_6 = new NetworkQuantumStorage(
-            NetworksItemGroups.NETWORK_QUANTUMS,
-            NetworksSlimefunItemStacks.NETWORK_QUANTUM_STORAGE_6,
-            NetworkQuantumWorkbench.TYPE,
-            new ItemStack[]{
-                SlimefunItems.STEEL_PLATE, SlimefunItems.BLISTERING_INGOT, SlimefunItems.STEEL_PLATE,
-                SlimefunItems.CARGO_MOTOR, NETWORK_QUANTUM_STORAGE_5.getItem(), SlimefunItems.CARGO_MOTOR,
-                SlimefunItems.STEEL_PLATE, SlimefunItems.BLISTERING_INGOT, SlimefunItems.STEEL_PLATE
-            },
-            NetworkQuantumStorage.getSizes()[8]
+                NetworksItemGroups.NETWORK_QUANTUMS,
+                NetworksSlimefunItemStacks.NETWORK_QUANTUM_STORAGE_6,
+                NetworkQuantumWorkbench.TYPE,
+                new ItemStack[]{
+                        SlimefunItems.STEEL_PLATE, SlimefunItems.BLISTERING_INGOT, SlimefunItems.STEEL_PLATE,
+                        SlimefunItems.CARGO_MOTOR, NETWORK_QUANTUM_STORAGE_5.getItem(), SlimefunItems.CARGO_MOTOR,
+                        SlimefunItems.STEEL_PLATE, SlimefunItems.BLISTERING_INGOT, SlimefunItems.STEEL_PLATE
+                },
+                NetworkQuantumStorage.getSizes()[8]
         );
 
         NETWORK_QUANTUM_STORAGE_7 = new NetworkQuantumStorage(
-            NetworksItemGroups.NETWORK_QUANTUMS,
-            NetworksSlimefunItemStacks.NETWORK_QUANTUM_STORAGE_7,
-            NetworkQuantumWorkbench.TYPE,
-            new ItemStack[]{
-                SlimefunItems.REINFORCED_PLATE, SlimefunItems.BLISTERING_INGOT_2, SlimefunItems.REINFORCED_PLATE,
-                SlimefunItems.CARGO_CONNECTOR_NODE, NETWORK_QUANTUM_STORAGE_6.getItem(), SlimefunItems.CARGO_CONNECTOR_NODE,
-                SlimefunItems.REINFORCED_PLATE, SlimefunItems.BLISTERING_INGOT_2, SlimefunItems.REINFORCED_PLATE
-            },
-            NetworkQuantumStorage.getSizes()[9]
+                NetworksItemGroups.NETWORK_QUANTUMS,
+                NetworksSlimefunItemStacks.NETWORK_QUANTUM_STORAGE_7,
+                NetworkQuantumWorkbench.TYPE,
+                new ItemStack[]{
+                        SlimefunItems.REINFORCED_PLATE, SlimefunItems.BLISTERING_INGOT_2, SlimefunItems.REINFORCED_PLATE,
+                        SlimefunItems.CARGO_CONNECTOR_NODE, NETWORK_QUANTUM_STORAGE_6.getItem(), SlimefunItems.CARGO_CONNECTOR_NODE,
+                        SlimefunItems.REINFORCED_PLATE, SlimefunItems.BLISTERING_INGOT_2, SlimefunItems.REINFORCED_PLATE
+                },
+                NetworkQuantumStorage.getSizes()[9]
         );
 
         NETWORK_QUANTUM_STORAGE_8 = new NetworkQuantumStorage(
-            NetworksItemGroups.NETWORK_QUANTUMS,
-            NetworksSlimefunItemStacks.NETWORK_QUANTUM_STORAGE_8,
-            NetworkQuantumWorkbench.TYPE,
-            new ItemStack[]{
-                OPTIC_GLASS.getItem(), SlimefunItems.BLISTERING_INGOT_3, OPTIC_GLASS.getItem(),
-                SlimefunItems.CARGO_MANAGER, NETWORK_QUANTUM_STORAGE_7.getItem(), SlimefunItems.CARGO_MANAGER,
-                OPTIC_GLASS.getItem(), SlimefunItems.BLISTERING_INGOT_3, OPTIC_GLASS.getItem()
-            },
-            NetworkQuantumStorage.getSizes()[10]
+                NetworksItemGroups.NETWORK_QUANTUMS,
+                NetworksSlimefunItemStacks.NETWORK_QUANTUM_STORAGE_8,
+                NetworkQuantumWorkbench.TYPE,
+                new ItemStack[]{
+                        OPTIC_GLASS.getItem(), SlimefunItems.BLISTERING_INGOT_3, OPTIC_GLASS.getItem(),
+                        SlimefunItems.CARGO_MANAGER, NETWORK_QUANTUM_STORAGE_7.getItem(), SlimefunItems.CARGO_MANAGER,
+                        OPTIC_GLASS.getItem(), SlimefunItems.BLISTERING_INGOT_3, OPTIC_GLASS.getItem()
+                },
+                NetworkQuantumStorage.getSizes()[10]
         );
 
         NETWORK_CAPACITOR_1 = new NetworkPowerNode(
@@ -642,7 +641,7 @@ public class NetworkSlimefunItems {
                 OPTIC_CABLE.getItem(), SlimefunItems.MEDIUM_CAPACITOR, OPTIC_CABLE.getItem(),
                 OPTIC_GLASS.getItem(), OPTIC_CABLE.getItem(), OPTIC_GLASS.getItem(),
             },
-            10000
+            1000
         );
 
         NETWORK_CAPACITOR_2 = new NetworkPowerNode(
@@ -654,7 +653,7 @@ public class NetworkSlimefunItems {
                 NETWORK_CAPACITOR_1.getItem(), SlimefunItems.BIG_CAPACITOR, NETWORK_CAPACITOR_1.getItem(),
                 NETWORK_CAPACITOR_1.getItem(), NETWORK_CAPACITOR_1.getItem(), NETWORK_CAPACITOR_1.getItem(),
             },
-            100000
+            10000
         );
 
         NETWORK_CAPACITOR_3 = new NetworkPowerNode(
@@ -666,7 +665,7 @@ public class NetworkSlimefunItems {
                 NETWORK_CAPACITOR_2.getItem(), SlimefunItems.LARGE_CAPACITOR, NETWORK_CAPACITOR_2.getItem(),
                 NETWORK_CAPACITOR_2.getItem(), NETWORK_CAPACITOR_2.getItem(), NETWORK_CAPACITOR_2.getItem(),
             },
-            1000000
+            100000
         );
 
         NETWORK_CAPACITOR_4 = new NetworkPowerNode(
@@ -678,7 +677,7 @@ public class NetworkSlimefunItems {
                         NETWORK_CAPACITOR_3.getItem(), SlimefunItems.CARBONADO_EDGED_CAPACITOR, NETWORK_CAPACITOR_3.getItem(),
                         NETWORK_CAPACITOR_3.getItem(), NETWORK_CAPACITOR_3.getItem(), NETWORK_CAPACITOR_3.getItem(),
                 },
-                10000000
+                1000000
         );
 
         NETWORK_POWER_OUTLET_1 = new NetworkPowerOutlet(
@@ -865,7 +864,7 @@ public class NetworkSlimefunItems {
                 null, new ItemStack(Material.DIAMOND_SWORD), null,
                 null, SYNTHETIC_EMERALD_SHARD.getItem(), null
             },
-            2500
+            250
         );
 
         NETWORK_RAKE_2 = new NetworkRake(
@@ -877,7 +876,7 @@ public class NetworkSlimefunItems {
                 null, NETWORK_RAKE_1.getItem(), null,
                 null, AI_CORE.getItem(), null
             },
-            10000
+            1000
         );
 
         NETWORK_RAKE_3 = new NetworkRake(
@@ -889,7 +888,7 @@ public class NetworkSlimefunItems {
                 null, NETWORK_RAKE_2.getItem(), null,
                 null, EMPOWERED_AI_CORE.getItem(), null
             },
-            99999
+            9999
         );
 
         NETWORK_ADMIN_DEBUGGER = new NetworkAdminDebugger(
